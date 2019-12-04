@@ -6,83 +6,164 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>582</width>
-    <height>644</height>
+    <width>687</width>
+    <height>769</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="exitButton">
-    <property name="geometry">
-     <rect>
-      <x>460</x>
-      <y>570</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>exit</string>
-    </property>
-    <property name="autoDefault">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="runButton">
-    <property name="geometry">
-     <rect>
-      <x>360</x>
-      <y>570</y>
-      <width>80</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>run</string>
-    </property>
-   </widget>
-   <widget class="QWidget" name="content_plot" native="true">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>20</y>
-      <width>500</width>
-      <height>500</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="class_num_lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>570</y>
-      <width>113</width>
-      <height>25</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>540</y>
-      <width>111</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>簇类数</string>
-    </property>
-   </widget>
+   <layout class="QVBoxLayout" name="verticalLayout_3">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab1">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <attribute name="title">
+        <string>kMeans</string>
+       </attribute>
+       <widget class="QWidget" name="verticalLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>651</width>
+          <height>591</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QWidget" name="kmeans_content_plot" native="true"/>
+         </item>
+         <item>
+          <widget class="QWidget" name="widget" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>100</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>10000</width>
+             <height>100</height>
+            </size>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_2">
+            <item row="1" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+             <widget class="QPushButton" name="runButton_kMeans">
+              <property name="text">
+               <string>run</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>kMedoids</string>
+       </attribute>
+       <widget class="QWidget" name="verticalLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>9</x>
+          <y>9</y>
+          <width>651</width>
+          <height>591</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QWidget" name="kmedoids_content_plot" native="true"/>
+         </item>
+         <item>
+          <widget class="QWidget" name="widget_3" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>100</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>100</height>
+            </size>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+             <widget class="QPushButton" name="runButton_KMedoids">
+              <property name="text">
+               <string>PushButton</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="1" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>簇类数</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+       <widget class="QPushButton" name="exitButton">
+        <property name="text">
+         <string>exit</string>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+       <widget class="QLineEdit" name="class_num_lineEdit"/>
+      </item>
+      <item row="0" column="0">
+       <layout class="QGridLayout" name="gridLayout"/>
+      </item>
+      <item row="2" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+       <widget class="QPushButton" name="clear_all_Button">
+        <property name="text">
+         <string>PushButton</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+       <widget class="QPushButton" name="randomButton">
+        <property name="text">
+         <string>random</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>582</width>
+     <width>687</width>
      <height>22</height>
     </rect>
    </property>
@@ -151,12 +232,12 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>819</x>
-     <y>514</y>
+     <x>511</x>
+     <y>724</y>
     </hint>
     <hint type="destinationlabel">
-     <x>447</x>
-     <y>327</y>
+     <x>343</x>
+     <y>384</y>
     </hint>
    </hints>
   </connection>
@@ -171,8 +252,8 @@
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>447</x>
-     <y>327</y>
+     <x>343</x>
+     <y>384</y>
     </hint>
    </hints>
   </connection>
