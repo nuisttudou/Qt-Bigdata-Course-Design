@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>687</width>
-    <height>800</height>
+    <width>705</width>
+    <height>854</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -30,7 +30,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab1">
        <property name="enabled">
@@ -44,13 +44,26 @@
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>651</width>
+          <width>652</width>
           <height>631</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <widget class="QWidget" name="kmeans_content_plot" native="true"/>
+          <widget class="QWidget" name="kmeans_content_plot" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>650</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>650</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QWidget" name="widget" native="true">
@@ -135,7 +148,7 @@
               <widget class="QLineEdit" name="lineEdit_kmeans_runtimes">
                <property name="geometry">
                 <rect>
-                 <x>80</x>
+                 <x>100</x>
                  <y>0</y>
                  <width>113</width>
                  <height>25</height>
@@ -159,13 +172,26 @@
          <rect>
           <x>9</x>
           <y>9</y>
-          <width>651</width>
+          <width>652</width>
           <height>621</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
-          <widget class="QWidget" name="kmedoids_content_plot" native="true"/>
+          <widget class="QWidget" name="kmedoids_content_plot" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>650</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>650</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QWidget" name="widget_3" native="true">
@@ -225,11 +251,168 @@
               </layout>
              </widget>
             </item>
-            <item row="0" column="3" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+            <item row="0" column="4" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
              <widget class="QPushButton" name="runButton_KMedoids">
               <property name="text">
                <string>run</string>
               </property>
+             </widget>
+            </item>
+            <item row="1" column="4">
+             <widget class="QWidget" name="widget_6" native="true">
+              <widget class="QComboBox" name="comboBox_kMedoids">
+               <property name="geometry">
+                <rect>
+                 <x>110</x>
+                 <y>10</y>
+                 <width>111</width>
+                 <height>25</height>
+                </rect>
+               </property>
+               <item>
+                <property name="text">
+                 <string>euclidean</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>l2</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>l1</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>manhattan</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>cityblock</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>braycurtis</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>canberra</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>chebyshev</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>correlation</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>cosine</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>dice</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>hamming</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>jaccard</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>kulsinski</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>mahalanobis</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>matching</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>minkowski</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>rogerstanimoto</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>russellrao</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>seuclidean</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>sokalmichener</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>sokalsneath</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>sqeuclidean</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>yule</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>wminkowski</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>haversine</string>
+                </property>
+               </item>
+              </widget>
+              <widget class="QLabel" name="label_6">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>10</y>
+                 <width>91</width>
+                 <height>17</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>距离度量方法</string>
+               </property>
+              </widget>
              </widget>
             </item>
            </layout>
@@ -242,6 +425,13 @@
     </item>
     <item>
      <layout class="QGridLayout" name="gridLayout_3">
+      <item row="2" column="3">
+       <widget class="QPushButton" name="randomButton">
+        <property name="text">
+         <string>random</string>
+        </property>
+       </widget>
+      </item>
       <item row="1" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
        <widget class="QLabel" name="label">
         <property name="text">
@@ -265,20 +455,6 @@
       <item row="0" column="0">
        <layout class="QGridLayout" name="gridLayout"/>
       </item>
-      <item row="2" column="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-       <widget class="QPushButton" name="clear_all_Button">
-        <property name="text">
-         <string>null</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="3" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-       <widget class="QPushButton" name="randomButton">
-        <property name="text">
-         <string>random</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="1" alignment="Qt::AlignHCenter">
        <widget class="QLabel" name="label_3">
         <property name="text">
@@ -289,7 +465,50 @@
       <item row="2" column="1" alignment="Qt::AlignHCenter">
        <widget class="QLineEdit" name="lineEdit_max_iter"/>
       </item>
+      <item row="1" column="4">
+       <widget class="QCheckBox" name="checkBox_Voronoi">
+        <property name="text">
+         <string>沃罗诺伊图</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QSlider" name="horizontalSlider">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>10</number>
+        </property>
+        <property name="pageStep">
+         <number>1</number>
+        </property>
+        <property name="value">
+         <number>3</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>密集                  随机点                  稀疏</string>
+        </property>
+       </widget>
+      </item>
      </layout>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_evaluat">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QGridLayout" name="gridLayout_5"/>
     </item>
    </layout>
   </widget>
@@ -298,7 +517,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>687</width>
+     <width>705</width>
      <height>22</height>
     </rect>
    </property>

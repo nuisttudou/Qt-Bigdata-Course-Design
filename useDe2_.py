@@ -2,7 +2,7 @@ from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QFileDialog
 from matplotlib.backends.backend_qt5agg import FigureCanvas
 
-
+from sklearn import metrics
 from de2 import Ui_MainWindow  # importing our generated file
 import sys
 import numpy as np
@@ -11,8 +11,10 @@ from sklearn.cluster import KMeans, MiniBatchKMeans
 from sklearn.datasets import make_blobs
 import pandas as pd
 from sklearn_extra.cluster import KMedoids
-
+import random
 from Voronoi_Diagram_ import *
+
+
 def he():
     print("test")
 
@@ -32,9 +34,31 @@ class datein():
 
 
 class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
+    def evaluate(self, model, y_pred, ):
+        print('inertia\thomo\tcompl\tv-meas\tARI\tAMI')
+        print('%.3f\t%.3f\t%.3f\t%.3f\t%.3f'  # \t%.3f'
+              % (
+                  metrics.homogeneity_score(y_pred, self.data.y_varied),
+                  metrics.completeness_score(y_pred, self.data.y_varied),
+                  metrics.v_measure_score(y_pred, self.data.y_varied),
+                  metrics.adjusted_rand_score(y_pred, self.data.y_varied),
+                  metrics.adjusted_mutual_info_score(y_pred, self.data.y_varied),
+                  #  metrics.silhouette_score(y_pred, self.data.y_varied,metric='euclidean')
+              ))
+
+        eva_string = "homo:" + str(metrics.homogeneity_score(y_pred, self.data.y_varied)) + '\t' + \
+                     "compl:" + str(metrics.completeness_score(y_pred, self.data.y_varied)) + '\t' + \
+                     "v-meas:" + str(metrics.v_measure_score(y_pred, self.data.y_varied)) + '\t' + \
+                     "ARI:" + str(metrics.adjusted_rand_score(y_pred, self.data.y_varied)) + '\t' + \
+                     "AMI:" + str(metrics.adjusted_mutual_info_score(y_pred, self.data.y_varied))
+        self.ui.label_evaluat.setText(eva_string)
+
     def setRandData(self):
         self.data = datein()
-        self.data.x_varied, self.data.y_varied = make_blobs(n_samples=1500, cluster_std=[1.0, 2.5, 0.5])
+        centers_num = int(self.ui.horizontalSlider.value())
+        cluster_std_ = [random.random() for _ in range(centers_num)]
+        self.data.x_varied, self.data.y_varied = make_blobs(n_samples=1500, cluster_std=cluster_std_,
+                                                            centers=centers_num)  # , cluster_std=[1.0, 2.5, 0.5])
         print("random OK")
 
     def __init__(self):
@@ -107,12 +131,17 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         x_varied = self.data.x_varied
         # y_pred = KMedoids(n_clusters=class_num, random_state=random_state).fit_predict(x_varied)
 
-        KMedoids_model= KMedoids(init=init_string, n_clusters=class_num, random_state=random_state,
-                          max_iter=max_iter_num)
-        y_pred=KMedoids_model.fit_predict(self.data.x_varied)
+        metric_string = self.ui.comboBox_kMedoids.currentText()
+        print(metric_string)
+
+        KMedoids_model = KMedoids(init=init_string, n_clusters=class_num, random_state=random_state,
+                                  max_iter=max_iter_num, metric=metric_string)
+        y_pred = KMedoids_model.fit_predict(self.data.x_varied)
         ax1.scatter(x_varied[:, 0], x_varied[:, 1], c=y_pred)
-        Vor_Dia(x_varied, KMedoids_model)
+        if self.ui.checkBox_Voronoi.isChecked():
+            Vor_Dia(x_varied, KMedoids_model)
         self_fig(fig)
+        self.evaluate(KMedoids_model, y_pred)
 
     def k_mean_draw(self, self_fig):
         # self.k_model_draw(KMedoids)
@@ -129,14 +158,14 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         print(init_string)
         # y_pred = KMedoids(init=init_string,n_clusters=class_num, random_state=random_state,max_iter=max_iter_num).fit_predict(self.data.x_varied)
-        KMeans_model=KMeans(init=init_string, n_init=n_init_num, n_clusters=class_num, random_state=random_state,
-                        max_iter=max_iter_num)
-        y_pred =KMeans_model.fit_predict(self.data.x_varied)
+        KMeans_model = KMeans(init=init_string, n_init=n_init_num, n_clusters=class_num, random_state=random_state,
+                              max_iter=max_iter_num)
+        y_pred = KMeans_model.fit_predict(self.data.x_varied)
         ax1.scatter(x_varied[:, 0], x_varied[:, 1], c=y_pred)
-        Vor_Dia(x_varied, KMeans_model)
-        # print(y_pred)
+        if self.ui.checkBox_Voronoi.isChecked():
+            Vor_Dia(x_varied, KMeans_model)
         self_fig(fig)
-
+        self.evaluate(KMeans_model, y_pred)
     # def k_model_draw(self, func, plotWidget,self_fig):
     #     class_num = 3 if self.ui.class_num_lineEdit.text() == "" else int(self.ui.class_num_lineEdit.text())
     #     max_iter_num = 300 if self.ui.lineEdit_max_iter.text() == "" else int(self.ui.class_num_lineEdit.text())
