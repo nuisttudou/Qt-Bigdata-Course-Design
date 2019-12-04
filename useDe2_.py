@@ -1,6 +1,8 @@
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QFileDialog
 from matplotlib.backends.backend_qt5agg import FigureCanvas
+
+
 from de2 import Ui_MainWindow  # importing our generated file
 import sys
 import numpy as np
@@ -10,7 +12,7 @@ from sklearn.datasets import make_blobs
 import pandas as pd
 from sklearn_extra.cluster import KMedoids
 
-
+from Voronoi_Diagram_ import *
 def he():
     print("test")
 
@@ -29,14 +31,14 @@ class datein():
     #     self.x_varied, self.y_varied= make_blobs(n_samples=n_samples,cluster_std=[1.0, 2.5, 0.5])
 
 
-class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
+class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def setRandData(self):
         self.data = datein()
         self.data.x_varied, self.data.y_varied = make_blobs(n_samples=1500, cluster_std=[1.0, 2.5, 0.5])
         print("random OK")
 
     def __init__(self):
-        super(mywindow, self).__init__()
+        super(MyWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
@@ -48,20 +50,25 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.layy_KMedoids = QtWidgets.QVBoxLayout(self.ui.kmedoids_content_plot)
         self.ui.plotWidget_KMedoids = None
-    def add_function(self):
-        # self.ui.runButton.clicked.connect(self.draw)
-        # self.ui.k_mean_action.triggered.connect(self.k_mean_draw)
-        self.ui.k_mean_action.triggered.connect(lambda: self.k_model_draw(KMeans, self.ui.plotWidget,self.add_fig_kmeans))
-        # self.ui.k_medoids_action.triggered.connect(self.k_medoids_draw)
-        self.ui.k_medoids_action.triggered.connect(lambda: self.k_model_draw(KMedoids, self.ui.plotWidget,self.add_fig_KMedoids))
-        self.ui.actionMiniBatchKMeans.triggered.connect(lambda: self.k_model_draw(MiniBatchKMeans, self.ui.plotWidget,self.add_fig_kmeans))
 
-        self.ui.runButton_kMeans.clicked.connect(lambda: self.k_model_draw(KMeans, self.ui.plotWidget,self.add_fig_kmeans))
-        self.ui.runButton_KMedoids.clicked.connect(lambda: self.k_model_draw(KMedoids, self.ui.plotWidget,self.add_fig_KMedoids))
+    def add_function(self):
+        self.ui.k_mean_action.triggered.connect(lambda: self.k_mean_draw(self.add_fig_kmeans))
+        self.ui.k_medoids_action.triggered.connect(lambda: self.k_medoids_draw(self.add_fig_KMedoids))
+        # self.ui.actionMiniBatchKMeans.triggered.connect(lambda: self.k_mean_draw(MiniBatchKMeans,  self.add_fig_kmeans))
+        self.ui.runButton_kMeans.clicked.connect(lambda: self.k_mean_draw(self.add_fig_kmeans))
+        self.ui.runButton_KMedoids.clicked.connect(lambda: self.k_medoids_draw(self.add_fig_KMedoids))
+
+        # self.ui.k_mean_action.triggered.connect(lambda: self.k_model_draw(KMeans, self.ui.plotWidget,self.add_fig_kmeans))
+        # self.ui.k_medoids_action.triggered.connect(lambda: self.k_model_draw(KMedoids, self.ui.plotWidget,self.add_fig_KMedoids))
+        # self.ui.actionMiniBatchKMeans.triggered.connect(lambda: self.k_model_draw(MiniBatchKMeans, self.ui.plotWidget,self.add_fig_kmeans))
+
+        # self.ui.runButton_kMeans.clicked.connect(lambda: self.k_model_draw(KMeans, self.ui.plotWidget,self.add_fig_kmeans))
+        # self.ui.runButton_KMedoids.clicked.connect(lambda: self.k_model_draw(KMedoids, self.ui.plotWidget,self.add_fig_KMedoids))
 
         self.ui.open_action.triggered.connect(self.open_data)
         self.ui.actionrandom.triggered.connect(self.setRandData)
         self.ui.randomButton.clicked.connect(self.setRandData)
+
     def open_data(self):
         openfile_name = QFileDialog.getOpenFileName(self, '选择文件', '', 'Excel files(*.xlsx , *.xls);;CSV files(*.csv )')
         print(openfile_name)
@@ -88,44 +95,63 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.plotWidget_KMedoids = FigureCanvas(fig)
         self.layy_KMedoids.addWidget(self.ui.plotWidget_KMedoids)
         print(self.layy_KMedoids.count())
-    '''
-    # def k_medoids_draw(self):
-    #     self.k_model_draw(KMeans)
-    # class_num = 3 if self.ui.class_num_lineEdit.text() == "" else int(self.ui.class_num_lineEdit.text())
-    # fig, ax1 = plt.subplots(figsize=(8, 5))
-    #
-    # random_state = 170
-    # x_varied = self.data.x_varied
-    # y_pred = KMeans(n_clusters=class_num, random_state=random_state).fit_predict(x_varied)
-    # ax1.scatter(x_varied[:, 0], x_varied[:, 1], c=y_pred)
-    # self.add_fig(fig)
 
-    # def k_mean_draw(self):
-    #     self.k_model_draw(KMedoids)
-    # class_num = 3 if self.ui.class_num_lineEdit.text() == "" else int(self.ui.class_num_lineEdit.text())
-    # fig, ax1 = plt.subplots(figsize=(8, 5))
-    #
-    # random_state = 170
-    # x_varied = self.data.x_varied
-    # y_pred = KMedoids(n_clusters=class_num, random_state=random_state).fit_predict(self.data.x_varied)
-    # ax1.scatter(x_varied[:, 0], x_varied[:, 1], c=y_pred)
-    # print(y_pred)
-    # self.add_fig(fig)
-    '''
-    def k_model_draw(self, func, plotWidget,self_fig):
+    def k_medoids_draw(self, self_fig):
+        # self.k_model_draw(KMeans)
         class_num = 3 if self.ui.class_num_lineEdit.text() == "" else int(self.ui.class_num_lineEdit.text())
+        max_iter_num = 300 if self.ui.lineEdit_max_iter.text() == "" else int(self.ui.lineEdit_max_iter.text())
         fig, ax1 = plt.subplots(figsize=(8, 5))
+
+        init_string = 'random' if self.ui.radioButton_kmedoids_random.isChecked() else 'heuristic' if self.ui.radioButton_kmedoids_heuristic.isChecked() else 'k-medoids++'
+        random_state = 170
         x_varied = self.data.x_varied
-        y_pred = func(n_clusters=class_num, random_state=170).fit_predict(self.data.x_varied)
+        # y_pred = KMedoids(n_clusters=class_num, random_state=random_state).fit_predict(x_varied)
+
+        KMedoids_model= KMedoids(init=init_string, n_clusters=class_num, random_state=random_state,
+                          max_iter=max_iter_num)
+        y_pred=KMedoids_model.fit_predict(self.data.x_varied)
         ax1.scatter(x_varied[:, 0], x_varied[:, 1], c=y_pred)
-        # self.add_fig_kmeans(fig)
+        Vor_Dia(x_varied, KMedoids_model)
         self_fig(fig)
-        print(y_pred)
-        print("drawOK")
+
+    def k_mean_draw(self, self_fig):
+        # self.k_model_draw(KMedoids)
+        class_num = 3 if self.ui.class_num_lineEdit.text() == "" else int(self.ui.class_num_lineEdit.text())
+        max_iter_num = 300 if self.ui.lineEdit_max_iter.text() == "" else int(self.ui.lineEdit_max_iter.text())
+        n_init_num = 1 if self.ui.lineEdit_kmeans_runtimes.text() == "" else int(
+            self.ui.lineEdit_kmeans_runtimes.text())
+        fig, ax1 = plt.subplots(figsize=(8, 5))
+
+        random_state = 170
+        x_varied = self.data.x_varied
+
+        init_string = 'random' if self.ui.radioButton_kmeans_random.isChecked() else 'k-means++'  # else 'heuristic' if self.ui.radioButton_kmeans_heuristic else 'k-means++'
+
+        print(init_string)
+        # y_pred = KMedoids(init=init_string,n_clusters=class_num, random_state=random_state,max_iter=max_iter_num).fit_predict(self.data.x_varied)
+        KMeans_model=KMeans(init=init_string, n_init=n_init_num, n_clusters=class_num, random_state=random_state,
+                        max_iter=max_iter_num)
+        y_pred =KMeans_model.fit_predict(self.data.x_varied)
+        ax1.scatter(x_varied[:, 0], x_varied[:, 1], c=y_pred)
+        Vor_Dia(x_varied, KMeans_model)
+        # print(y_pred)
+        self_fig(fig)
+
+    # def k_model_draw(self, func, plotWidget,self_fig):
+    #     class_num = 3 if self.ui.class_num_lineEdit.text() == "" else int(self.ui.class_num_lineEdit.text())
+    #     max_iter_num = 300 if self.ui.lineEdit_max_iter.text() == "" else int(self.ui.class_num_lineEdit.text())
+    #     fig, ax1 = plt.subplots(figsize=(8, 5))
+    #     x_varied = self.data.x_varied
+    #     y_pred = func(n_clusters=class_num, random_state=170).fit_predict(self.data.x_varied)
+    #     ax1.scatter(x_varied[:, 0], x_varied[:, 1], c=y_pred)
+    #     # self.add_fig_kmeans(fig)
+    #     self_fig(fig)
+    #     print(y_pred)
+    #     print("drawOK")
 
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
-    application = mywindow()
+    application = MyWindow()
     application.show()
     sys.exit(app.exec())

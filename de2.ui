@@ -7,8 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>687</width>
-    <height>769</height>
+    <height>800</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>650</width>
+    <height>800</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -17,6 +23,12 @@
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
      <widget class="QTabWidget" name="tabWidget">
+      <property name="minimumSize">
+       <size>
+        <width>650</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="currentIndex">
        <number>0</number>
       </property>
@@ -33,7 +45,7 @@
           <x>10</x>
           <y>10</y>
           <width>651</width>
-          <height>591</height>
+          <height>631</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -55,11 +67,81 @@
             </size>
            </property>
            <layout class="QGridLayout" name="gridLayout_2">
-            <item row="1" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+            <item row="2" column="3">
+             <widget class="QWidget" name="widget_2" native="true">
+              <property name="minimumSize">
+               <size>
+                <width>230</width>
+                <height>0</height>
+               </size>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_2">
+               <item>
+                <widget class="QLabel" name="label_2">
+                 <property name="text">
+                  <string>初始化方法</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="radioButton_kmeans_plusplus">
+                 <property name="text">
+                  <string>heuristic</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="radioButton_kmeans_random">
+                 <property name="text">
+                  <string>random</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="radioButton_kmeans_heuristic">
+                 <property name="text">
+                  <string>k-means++</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="1" column="4" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
              <widget class="QPushButton" name="runButton_kMeans">
               <property name="text">
                <string>run</string>
               </property>
+             </widget>
+            </item>
+            <item row="1" column="3">
+             <widget class="QWidget" name="widget_5" native="true">
+              <widget class="QLabel" name="label_5">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>0</y>
+                 <width>55</width>
+                 <height>17</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>运行次数</string>
+               </property>
+              </widget>
+              <widget class="QLineEdit" name="lineEdit_kmeans_runtimes">
+               <property name="geometry">
+                <rect>
+                 <x>80</x>
+                 <y>0</y>
+                 <width>113</width>
+                 <height>25</height>
+                </rect>
+               </property>
+              </widget>
              </widget>
             </item>
            </layout>
@@ -78,7 +160,7 @@
           <x>9</x>
           <y>9</y>
           <width>651</width>
-          <height>591</height>
+          <height>621</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -100,10 +182,53 @@
             </size>
            </property>
            <layout class="QGridLayout" name="gridLayout_4">
-            <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+            <item row="1" column="1">
+             <widget class="QWidget" name="widget_4" native="true">
+              <property name="minimumSize">
+               <size>
+                <width>230</width>
+                <height>0</height>
+               </size>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout">
+               <item>
+                <widget class="QLabel" name="label_4">
+                 <property name="text">
+                  <string>初始化方法</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="radioButton_kmedoids_heuristic">
+                 <property name="text">
+                  <string>heuristic</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="radioButton_kmedoids_random">
+                 <property name="text">
+                  <string>random</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="radioButton_kmedoids_plusplus">
+                 <property name="text">
+                  <string>k-medoids++</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="0" column="3" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
              <widget class="QPushButton" name="runButton_KMedoids">
               <property name="text">
-               <string>PushButton</string>
+               <string>run</string>
               </property>
              </widget>
             </item>
@@ -124,7 +249,7 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="3" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+      <item row="2" column="4" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
        <widget class="QPushButton" name="exitButton">
         <property name="text">
          <string>exit</string>
@@ -140,19 +265,29 @@
       <item row="0" column="0">
        <layout class="QGridLayout" name="gridLayout"/>
       </item>
-      <item row="2" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+      <item row="2" column="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
        <widget class="QPushButton" name="clear_all_Button">
         <property name="text">
-         <string>PushButton</string>
+         <string>null</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="2" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+      <item row="2" column="3" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
        <widget class="QPushButton" name="randomButton">
         <property name="text">
          <string>random</string>
         </property>
        </widget>
+      </item>
+      <item row="1" column="1" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>最大迭代次数</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" alignment="Qt::AlignHCenter">
+       <widget class="QLineEdit" name="lineEdit_max_iter"/>
       </item>
      </layout>
     </item>
