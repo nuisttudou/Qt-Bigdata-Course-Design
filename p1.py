@@ -8,8 +8,9 @@ n_samples = 1500
 random_state = 170
 
 X_varied, y_varied = make_blobs(n_samples=n_samples,
-                                cluster_std=[1.0, 2.5, 0.5],
-                                random_state=random_state)
+#                                cluster_std=[1.0, 2.5, 0.5],
+                                random_state=random_state,
+                                cluster_std=2)
 KMeans_model=KMeans(n_clusters=3, random_state=170)
 y_pred = KMeans_model.fit_predict(X_varied)
 

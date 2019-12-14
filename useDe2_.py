@@ -14,6 +14,9 @@ from sklearn_extra.cluster import KMedoids
 import random
 from Voronoi_Diagram_ import *
 
+RANDOM_VAL = 3
+RANDOM_NUM = 1500
+
 
 class datein():
     def __init__(self, pwd=""):
@@ -21,12 +24,6 @@ class datein():
             return
         da = np.array(pd.read_csv(pwd))
         self.x_varied, self.y_varied = da[:, 0:2], da[:, 2]
-
-    # print(self.x_varied.shape)
-    # print(self.x_varied)
-    # def __init__(self):
-    #     n_samples = 1500
-    #     self.x_varied, self.y_varied= make_blobs(n_samples=n_samples,cluster_std=[1.0, 2.5, 0.5])
 
 
 class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -42,25 +39,31 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                   #  metrics.silhouette_score(y_pred, self.data.y_varied,metric='euclidean')
               ))
 
-        eva_string = "homo:" + str(round(metrics.homogeneity_score(y_pred, self.data.y_varied),3)) + '\n' + \
-                     "compl:" + str(round(metrics.completeness_score(y_pred, self.data.y_varied),3)) + '\n' + \
-                     "v-meas:" + str(round(metrics.v_measure_score(y_pred, self.data.y_varied),3)) + '\n' + \
-                     "ARI:" + str(round(metrics.adjusted_rand_score(y_pred, self.data.y_varied),3)) + '\n' + \
-                     "AMI:" + str(round(metrics.adjusted_mutual_info_score(y_pred, self.data.y_varied),3))
+        eva_string = "homo:" + str(round(metrics.homogeneity_score(y_pred, self.data.y_varied), 3)) + '\n' + \
+                     "compl:" + str(round(metrics.completeness_score(y_pred, self.data.y_varied), 3)) + '\n' + \
+                     "v-meas:" + str(round(metrics.v_measure_score(y_pred, self.data.y_varied), 3)) + '\n' + \
+                     "ARI:" + str(round(metrics.adjusted_rand_score(y_pred, self.data.y_varied), 3)) + '\n' + \
+                     "AMI:" + str(round(metrics.adjusted_mutual_info_score(y_pred, self.data.y_varied), 3))
         self.ui.label_evaluat.setText(eva_string)
+
+        temp = ""
+        for class_pred in set(y_pred):
+            temp += chr(65 + class_pred) + ":" + str(np.sum(y_pred == class_pred)) + "\n"
+        self.ui.label_count.setText(temp)
 
     def add_datax_table(self):
         def table_clear_ALL(self):
             for index in range(0, self.ui.tableWidget.rowCount()).__reversed__():
                 self.ui.tableWidget.removeRow(index)
+
         table_clear_ALL(self)
 
         def add_data_table_one_row(self, l):
             self.ui.tableWidget.setColumnCount(l.shape[0] + 1)
             row = self.ui.tableWidget.rowCount()
             self.ui.tableWidget.insertRow(row)
-            item_id = QTableWidgetItem('%.3f' % (l[0]))   # str(l[0]))
-            item_name = QTableWidgetItem('%.3f' % (l[1])) # str(l[1]))
+            item_id = QTableWidgetItem('%.3f' % (l[0]))  # str(l[0]))
+            item_name = QTableWidgetItem('%.3f' % (l[1]))  # str(l[1]))
             item_pos = QTableWidgetItem('???')
             self.ui.tableWidget.setItem(row, 0, item_id)
             self.ui.tableWidget.setItem(row, 1, item_name)
@@ -69,9 +72,9 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         for xRow in self.data.x_varied:
             add_data_table_one_row(self, xRow)
 
-    def add_datay_table(self,y_pred):
-        for yIndex in range(0,y_pred.shape[0]):
-            self.ui.tableWidget.setItem(yIndex, 2, QTableWidgetItem(chr(y_pred[yIndex]+65)))
+    def add_datay_table(self, y_pred):
+        for yIndex in range(0, y_pred.shape[0]):
+            self.ui.tableWidget.setItem(yIndex, 2, QTableWidgetItem(chr(y_pred[yIndex] + 65)))
         # for yIndex in range(0,y_pred.shape[0]):
         #     self.ui.tableWidget.setItem(yIndex, 2, QTableWidgetItem(str(y_pred[yIndex])))
         # for yIndex in range(0,self.data.y_varied.shape[0]):
@@ -80,8 +83,8 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def setRandData(self):
         self.data = datein()
         centers_num = int(self.ui.horizontalSlider.value())
-        cluster_std_ = [random.random() for _ in range(centers_num)]
-        self.data.x_varied, self.data.y_varied = make_blobs(n_samples=1500, cluster_std=cluster_std_,
+        cluster_std_ = [random.random() * RANDOM_VAL for _ in range(centers_num)]
+        self.data.x_varied, self.data.y_varied = make_blobs(n_samples=RANDOM_NUM, cluster_std=cluster_std_,  # cluster_std=2
                                                             centers=centers_num)  # , cluster_std=[1.0, 2.5, 0.5])
 
         # self.add_data_table('x', 'y', 'z')
@@ -119,6 +122,7 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.ui.open_action.triggered.connect(self.open_data)
             self.ui.actionrandom.triggered.connect(self.setRandData)
             self.ui.randomButton.clicked.connect(self.setRandData)
+
         add_function(self)
 
     def open_data(self):

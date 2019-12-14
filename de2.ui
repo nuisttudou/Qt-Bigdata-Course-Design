@@ -520,7 +520,7 @@
         <widget class="QTableWidget" name="tableWidget"/>
        </item>
        <item>
-        <widget class="QLabel" name="label_evaluat">
+        <widget class="QWidget" name="widget_9" native="true">
          <property name="minimumSize">
           <size>
            <width>300</width>
@@ -533,9 +533,40 @@
            <height>16777215</height>
           </size>
          </property>
-         <property name="text">
-          <string/>
-         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="QLabel" name="label_count">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_evaluat">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
       </layout>
