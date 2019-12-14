@@ -6,13 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>705</width>
+    <width>1021</width>
     <height>854</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>650</width>
+    <width>950</width>
     <height>800</height>
    </size>
   </property>
@@ -20,495 +20,526 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_3">
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
     <item>
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="minimumSize">
-       <size>
-        <width>650</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="currentIndex">
-       <number>1</number>
-      </property>
-      <widget class="QWidget" name="tab1">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <attribute name="title">
-        <string>kMeans</string>
-       </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>652</width>
-          <height>631</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <item>
-          <widget class="QWidget" name="kmeans_content_plot" native="true">
-           <property name="minimumSize">
-            <size>
-             <width>650</width>
-             <height>0</height>
-            </size>
+     <widget class="QWidget" name="widget_7" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QTabWidget" name="tabWidget">
+         <property name="minimumSize">
+          <size>
+           <width>650</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>700</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <widget class="QWidget" name="tab1">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <attribute name="title">
+           <string>kMeans</string>
+          </attribute>
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <item>
+              <widget class="QWidget" name="kmeans_content_plot" native="true">
+               <property name="minimumSize">
+                <size>
+                 <width>650</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>650</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QWidget" name="widget" native="true">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>100</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>10000</width>
+                 <height>100</height>
+                </size>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_2">
+                <item row="2" column="3">
+                 <widget class="QWidget" name="widget_2" native="true">
+                  <property name="minimumSize">
+                   <size>
+                    <width>230</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_2">
+                   <item>
+                    <widget class="QLabel" name="label_2">
+                     <property name="text">
+                      <string>初始化方法</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QRadioButton" name="radioButton_kmeans_plusplus">
+                     <property name="text">
+                      <string>heuristic</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QRadioButton" name="radioButton_kmeans_random">
+                     <property name="text">
+                      <string>random</string>
+                     </property>
+                     <property name="checked">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QRadioButton" name="radioButton_kmeans_heuristic">
+                     <property name="text">
+                      <string>k-means++</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="1" column="4" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+                 <widget class="QPushButton" name="runButton_kMeans">
+                  <property name="text">
+                   <string>run</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="3">
+                 <widget class="QWidget" name="widget_5" native="true">
+                  <widget class="QLabel" name="label_5">
+                   <property name="geometry">
+                    <rect>
+                     <x>10</x>
+                     <y>0</y>
+                     <width>55</width>
+                     <height>17</height>
+                    </rect>
+                   </property>
+                   <property name="text">
+                    <string>运行次数</string>
+                   </property>
+                  </widget>
+                  <widget class="QLineEdit" name="lineEdit_kmeans_runtimes">
+                   <property name="geometry">
+                    <rect>
+                     <x>100</x>
+                     <y>0</y>
+                     <width>113</width>
+                     <height>25</height>
+                    </rect>
+                   </property>
+                  </widget>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_2">
+          <attribute name="title">
+           <string>kMedoids</string>
+          </attribute>
+          <widget class="QWidget" name="verticalLayoutWidget_2">
+           <property name="geometry">
+            <rect>
+             <x>9</x>
+             <y>9</y>
+             <width>652</width>
+             <height>651</height>
+            </rect>
            </property>
-           <property name="maximumSize">
-            <size>
-             <width>650</width>
-             <height>16777215</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QWidget" name="widget" native="true">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>100</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>10000</width>
-             <height>100</height>
-            </size>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_2">
-            <item row="2" column="3">
-             <widget class="QWidget" name="widget_2" native="true">
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QWidget" name="kmedoids_content_plot" native="true">
               <property name="minimumSize">
                <size>
-                <width>230</width>
+                <width>650</width>
                 <height>0</height>
                </size>
               </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_2">
-               <item>
-                <widget class="QLabel" name="label_2">
+              <property name="maximumSize">
+               <size>
+                <width>650</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QWidget" name="widget_3" native="true">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>100</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>100</height>
+               </size>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_4">
+               <item row="1" column="1">
+                <widget class="QWidget" name="widget_4" native="true">
+                 <property name="minimumSize">
+                  <size>
+                   <width>230</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout">
+                  <item>
+                   <widget class="QLabel" name="label_4">
+                    <property name="text">
+                     <string>初始化方法</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="radioButton_kmedoids_heuristic">
+                    <property name="text">
+                     <string>heuristic</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="radioButton_kmedoids_random">
+                    <property name="text">
+                     <string>random</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="radioButton_kmedoids_plusplus">
+                    <property name="text">
+                     <string>k-medoids++</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="0" column="4" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+                <widget class="QPushButton" name="runButton_KMedoids">
                  <property name="text">
-                  <string>初始化方法</string>
+                  <string>run</string>
                  </property>
                 </widget>
                </item>
-               <item>
-                <widget class="QRadioButton" name="radioButton_kmeans_plusplus">
-                 <property name="text">
-                  <string>heuristic</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QRadioButton" name="radioButton_kmeans_random">
-                 <property name="text">
-                  <string>random</string>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QRadioButton" name="radioButton_kmeans_heuristic">
-                 <property name="text">
-                  <string>k-means++</string>
-                 </property>
+               <item row="0" column="1">
+                <widget class="QWidget" name="widget_6" native="true">
+                 <widget class="QComboBox" name="comboBox_kMedoids">
+                  <property name="geometry">
+                   <rect>
+                    <x>110</x>
+                    <y>10</y>
+                    <width>111</width>
+                    <height>25</height>
+                   </rect>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>euclidean</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>l2</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>l1</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>manhattan</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>cityblock</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>braycurtis</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>canberra</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>chebyshev</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>correlation</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>cosine</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>dice</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>hamming</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>jaccard</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>kulsinski</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>mahalanobis</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>matching</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>minkowski</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>rogerstanimoto</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>russellrao</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>seuclidean</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>sokalmichener</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>sokalsneath</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>sqeuclidean</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>yule</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>wminkowski</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>haversine</string>
+                   </property>
+                  </item>
+                 </widget>
+                 <widget class="QLabel" name="label_6">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>10</y>
+                    <width>91</width>
+                    <height>17</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>距离度量方法</string>
+                  </property>
+                 </widget>
                 </widget>
                </item>
               </layout>
              </widget>
             </item>
-            <item row="1" column="4" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-             <widget class="QPushButton" name="runButton_kMeans">
-              <property name="text">
-               <string>run</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="3">
-             <widget class="QWidget" name="widget_5" native="true">
-              <widget class="QLabel" name="label_5">
-               <property name="geometry">
-                <rect>
-                 <x>10</x>
-                 <y>0</y>
-                 <width>55</width>
-                 <height>17</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>运行次数</string>
-               </property>
-              </widget>
-              <widget class="QLineEdit" name="lineEdit_kmeans_runtimes">
-               <property name="geometry">
-                <rect>
-                 <x>100</x>
-                 <y>0</y>
-                 <width>113</width>
-                 <height>25</height>
-                </rect>
-               </property>
-              </widget>
-             </widget>
-            </item>
            </layout>
+          </widget>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="2" column="3">
+          <widget class="QPushButton" name="randomButton">
+           <property name="text">
+            <string>载入</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>簇类数</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="4" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+          <widget class="QPushButton" name="exitButton">
+           <property name="text">
+            <string>exit</string>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+          <widget class="QLineEdit" name="class_num_lineEdit"/>
+         </item>
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout"/>
+         </item>
+         <item row="2" column="2">
+          <widget class="QSlider" name="horizontalSlider">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>10</number>
+           </property>
+           <property name="pageStep">
+            <number>1</number>
+           </property>
+           <property name="value">
+            <number>3</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>密集                  随机点                  稀疏</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>最大迭代次数</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="lineEdit_max_iter"/>
+         </item>
+         <item row="1" column="4">
+          <widget class="QCheckBox" name="checkBox_Voronoi">
+           <property name="text">
+            <string>沃罗诺伊图</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>载入默认数据集</string>
+           </property>
           </widget>
          </item>
         </layout>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="tab_2">
-       <attribute name="title">
-        <string>kMedoids</string>
-       </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_2">
-        <property name="geometry">
-         <rect>
-          <x>9</x>
-          <y>9</y>
-          <width>652</width>
-          <height>621</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_4">
-         <item>
-          <widget class="QWidget" name="kmedoids_content_plot" native="true">
-           <property name="minimumSize">
-            <size>
-             <width>650</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>650</width>
-             <height>16777215</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QWidget" name="widget_3" native="true">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>100</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>100</height>
-            </size>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_4">
-            <item row="1" column="1">
-             <widget class="QWidget" name="widget_4" native="true">
-              <property name="minimumSize">
-               <size>
-                <width>230</width>
-                <height>0</height>
-               </size>
-              </property>
-              <layout class="QHBoxLayout" name="horizontalLayout">
-               <item>
-                <widget class="QLabel" name="label_4">
-                 <property name="text">
-                  <string>初始化方法</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QRadioButton" name="radioButton_kmedoids_heuristic">
-                 <property name="text">
-                  <string>heuristic</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QRadioButton" name="radioButton_kmedoids_random">
-                 <property name="text">
-                  <string>random</string>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QRadioButton" name="radioButton_kmedoids_plusplus">
-                 <property name="text">
-                  <string>k-medoids++</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item row="0" column="4" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-             <widget class="QPushButton" name="runButton_KMedoids">
-              <property name="text">
-               <string>run</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="4">
-             <widget class="QWidget" name="widget_6" native="true">
-              <widget class="QComboBox" name="comboBox_kMedoids">
-               <property name="geometry">
-                <rect>
-                 <x>110</x>
-                 <y>10</y>
-                 <width>111</width>
-                 <height>25</height>
-                </rect>
-               </property>
-               <item>
-                <property name="text">
-                 <string>euclidean</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>l2</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>l1</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>manhattan</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>cityblock</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>braycurtis</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>canberra</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>chebyshev</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>correlation</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>cosine</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>dice</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>hamming</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>jaccard</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>kulsinski</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>mahalanobis</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>matching</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>minkowski</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>rogerstanimoto</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>russellrao</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>seuclidean</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>sokalmichener</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>sokalsneath</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>sqeuclidean</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>yule</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>wminkowski</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>haversine</string>
-                </property>
-               </item>
-              </widget>
-              <widget class="QLabel" name="label_6">
-               <property name="geometry">
-                <rect>
-                 <x>10</x>
-                 <y>10</y>
-                 <width>91</width>
-                 <height>17</height>
-                </rect>
-               </property>
-               <property name="text">
-                <string>距离度量方法</string>
-               </property>
-              </widget>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </widget>
+       </item>
+      </layout>
      </widget>
     </item>
     <item>
-     <layout class="QGridLayout" name="gridLayout_3">
-      <item row="2" column="3">
-       <widget class="QPushButton" name="randomButton">
-        <property name="text">
-         <string>random</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>簇类数</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="4" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-       <widget class="QPushButton" name="exitButton">
-        <property name="text">
-         <string>exit</string>
-        </property>
-        <property name="autoDefault">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-       <widget class="QLineEdit" name="class_num_lineEdit"/>
-      </item>
-      <item row="0" column="0">
-       <layout class="QGridLayout" name="gridLayout"/>
-      </item>
-      <item row="1" column="1" alignment="Qt::AlignHCenter">
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>最大迭代次数</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1" alignment="Qt::AlignHCenter">
-       <widget class="QLineEdit" name="lineEdit_max_iter"/>
-      </item>
-      <item row="1" column="4">
-       <widget class="QCheckBox" name="checkBox_Voronoi">
-        <property name="text">
-         <string>沃罗诺伊图</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="2">
-       <widget class="QSlider" name="horizontalSlider">
-        <property name="minimum">
-         <number>1</number>
-        </property>
-        <property name="maximum">
-         <number>10</number>
-        </property>
-        <property name="pageStep">
-         <number>1</number>
-        </property>
-        <property name="value">
-         <number>3</number>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QLabel" name="label_7">
-        <property name="text">
-         <string>密集                  随机点                  稀疏</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_evaluat">
-      <property name="text">
-       <string/>
-      </property>
+     <widget class="QWidget" name="widget_8" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QTableWidget" name="tableWidget"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_evaluat">
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>300</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
-    </item>
-    <item>
-     <layout class="QGridLayout" name="gridLayout_5"/>
     </item>
    </layout>
   </widget>
@@ -517,7 +548,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>705</width>
+     <width>1021</width>
      <height>22</height>
     </rect>
    </property>
@@ -535,7 +566,17 @@
     <addaction name="separator"/>
     <addaction name="exit_action"/>
    </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>关于</string>
+    </property>
+    <addaction name="action_help"/>
+    <addaction name="separator"/>
+    <addaction name="action_about"/>
+    <addaction name="separator"/>
+   </widget>
    <addaction name="menumenu"/>
+   <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="open_action">
@@ -574,6 +615,16 @@
   <action name="actionMiniBatchKMeans">
    <property name="text">
     <string>MiniBatchKMeans</string>
+   </property>
+  </action>
+  <action name="action_about">
+   <property name="text">
+    <string>关于</string>
+   </property>
+  </action>
+  <action name="action_help">
+   <property name="text">
+    <string>帮助</string>
    </property>
   </action>
  </widget>

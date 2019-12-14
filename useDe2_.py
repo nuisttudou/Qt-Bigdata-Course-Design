@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtWidgets import QFileDialog, QTableWidgetItem, QAbstractItemView
 from matplotlib.backends.backend_qt5agg import FigureCanvas
 
 from sklearn import metrics
@@ -13,10 +13,6 @@ import pandas as pd
 from sklearn_extra.cluster import KMedoids
 import random
 from Voronoi_Diagram_ import *
-
-
-def he():
-    print("test")
 
 
 class datein():
@@ -46,12 +42,40 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                   #  metrics.silhouette_score(y_pred, self.data.y_varied,metric='euclidean')
               ))
 
-        eva_string = "homo:" + str(metrics.homogeneity_score(y_pred, self.data.y_varied)) + '\t' + \
-                     "compl:" + str(metrics.completeness_score(y_pred, self.data.y_varied)) + '\t' + \
-                     "v-meas:" + str(metrics.v_measure_score(y_pred, self.data.y_varied)) + '\t' + \
-                     "ARI:" + str(metrics.adjusted_rand_score(y_pred, self.data.y_varied)) + '\t' + \
-                     "AMI:" + str(metrics.adjusted_mutual_info_score(y_pred, self.data.y_varied))
+        eva_string = "homo:" + str(round(metrics.homogeneity_score(y_pred, self.data.y_varied),3)) + '\n' + \
+                     "compl:" + str(round(metrics.completeness_score(y_pred, self.data.y_varied),3)) + '\n' + \
+                     "v-meas:" + str(round(metrics.v_measure_score(y_pred, self.data.y_varied),3)) + '\n' + \
+                     "ARI:" + str(round(metrics.adjusted_rand_score(y_pred, self.data.y_varied),3)) + '\n' + \
+                     "AMI:" + str(round(metrics.adjusted_mutual_info_score(y_pred, self.data.y_varied),3))
         self.ui.label_evaluat.setText(eva_string)
+
+    def add_datax_table(self):
+        def table_clear_ALL(self):
+            for index in range(0, self.ui.tableWidget.rowCount()).__reversed__():
+                self.ui.tableWidget.removeRow(index)
+        table_clear_ALL(self)
+
+        def add_data_table_one_row(self, l):
+            self.ui.tableWidget.setColumnCount(l.shape[0] + 1)
+            row = self.ui.tableWidget.rowCount()
+            self.ui.tableWidget.insertRow(row)
+            item_id = QTableWidgetItem('%.3f' % (l[0]))   # str(l[0]))
+            item_name = QTableWidgetItem('%.3f' % (l[1])) # str(l[1]))
+            item_pos = QTableWidgetItem('???')
+            self.ui.tableWidget.setItem(row, 0, item_id)
+            self.ui.tableWidget.setItem(row, 1, item_name)
+            self.ui.tableWidget.setItem(row, 2, item_pos)
+
+        for xRow in self.data.x_varied:
+            add_data_table_one_row(self, xRow)
+
+    def add_datay_table(self,y_pred):
+        for yIndex in range(0,y_pred.shape[0]):
+            self.ui.tableWidget.setItem(yIndex, 2, QTableWidgetItem(chr(y_pred[yIndex]+65)))
+        # for yIndex in range(0,y_pred.shape[0]):
+        #     self.ui.tableWidget.setItem(yIndex, 2, QTableWidgetItem(str(y_pred[yIndex])))
+        # for yIndex in range(0,self.data.y_varied.shape[0]):
+        #     self.ui.tableWidget.setItem(yIndex, 2, QTableWidgetItem(str(self.data.y_varied[yIndex])))
 
     def setRandData(self):
         self.data = datein()
@@ -59,6 +83,10 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         cluster_std_ = [random.random() for _ in range(centers_num)]
         self.data.x_varied, self.data.y_varied = make_blobs(n_samples=1500, cluster_std=cluster_std_,
                                                             centers=centers_num)  # , cluster_std=[1.0, 2.5, 0.5])
+
+        # self.add_data_table('x', 'y', 'z')
+        self.add_datax_table()
+
         print("random OK")
 
     def __init__(self):
@@ -66,7 +94,6 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.add_function()
         self.data = None
 
         self.layy = QtWidgets.QVBoxLayout(self.ui.kmeans_content_plot)
@@ -75,29 +102,32 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.layy_KMedoids = QtWidgets.QVBoxLayout(self.ui.kmedoids_content_plot)
         self.ui.plotWidget_KMedoids = None
 
-    def add_function(self):
-        self.ui.k_mean_action.triggered.connect(lambda: self.k_mean_draw(self.add_fig_kmeans))
-        self.ui.k_medoids_action.triggered.connect(lambda: self.k_medoids_draw(self.add_fig_KMedoids))
-        # self.ui.actionMiniBatchKMeans.triggered.connect(lambda: self.k_mean_draw(MiniBatchKMeans,  self.add_fig_kmeans))
-        self.ui.runButton_kMeans.clicked.connect(lambda: self.k_mean_draw(self.add_fig_kmeans))
-        self.ui.runButton_KMedoids.clicked.connect(lambda: self.k_medoids_draw(self.add_fig_KMedoids))
+        def add_function(self):
+            self.ui.k_mean_action.triggered.connect(lambda: self.k_mean_draw(self.add_fig_kmeans))
+            self.ui.k_medoids_action.triggered.connect(lambda: self.k_medoids_draw(self.add_fig_KMedoids))
+            # self.ui.actionMiniBatchKMeans.triggered.connect(lambda: self.k_mean_draw(MiniBatchKMeans,  self.add_fig_kmeans))
+            self.ui.runButton_kMeans.clicked.connect(lambda: self.k_mean_draw(self.add_fig_kmeans))
+            self.ui.runButton_KMedoids.clicked.connect(lambda: self.k_medoids_draw(self.add_fig_KMedoids))
 
-        # self.ui.k_mean_action.triggered.connect(lambda: self.k_model_draw(KMeans, self.ui.plotWidget,self.add_fig_kmeans))
-        # self.ui.k_medoids_action.triggered.connect(lambda: self.k_model_draw(KMedoids, self.ui.plotWidget,self.add_fig_KMedoids))
-        # self.ui.actionMiniBatchKMeans.triggered.connect(lambda: self.k_model_draw(MiniBatchKMeans, self.ui.plotWidget,self.add_fig_kmeans))
+            # self.ui.k_mean_action.triggered.connect(lambda: self.k_model_draw(KMeans, self.ui.plotWidget,self.add_fig_kmeans))
+            # self.ui.k_medoids_action.triggered.connect(lambda: self.k_model_draw(KMedoids, self.ui.plotWidget,self.add_fig_KMedoids))
+            # self.ui.actionMiniBatchKMeans.triggered.connect(lambda: self.k_model_draw(MiniBatchKMeans, self.ui.plotWidget,self.add_fig_kmeans))
 
-        # self.ui.runButton_kMeans.clicked.connect(lambda: self.k_model_draw(KMeans, self.ui.plotWidget,self.add_fig_kmeans))
-        # self.ui.runButton_KMedoids.clicked.connect(lambda: self.k_model_draw(KMedoids, self.ui.plotWidget,self.add_fig_KMedoids))
+            # self.ui.runButton_kMeans.clicked.connect(lambda: self.k_model_draw(KMeans, self.ui.plotWidget,self.add_fig_kmeans))
+            # self.ui.runButton_KMedoids.clicked.connect(lambda: self.k_model_draw(KMedoids, self.ui.plotWidget,self.add_fig_KMedoids))
 
-        self.ui.open_action.triggered.connect(self.open_data)
-        self.ui.actionrandom.triggered.connect(self.setRandData)
-        self.ui.randomButton.clicked.connect(self.setRandData)
+            self.ui.open_action.triggered.connect(self.open_data)
+            self.ui.actionrandom.triggered.connect(self.setRandData)
+            self.ui.randomButton.clicked.connect(self.setRandData)
+        add_function(self)
 
     def open_data(self):
-        openfile_name = QFileDialog.getOpenFileName(self, '选择文件', '', 'Excel files(*.xlsx , *.xls);;CSV files(*.csv )')
+        openfile_name = QFileDialog.getOpenFileName(self, '选择文件', '',
+                                                    'CSV files(*.csv )')  # QFileDialog.getOpenFileName(self, '选择文件', '', 'Excel files(*.xlsx , *.xls);;CSV files(*.csv )')
         print(openfile_name)
         if openfile_name[0] != '':
             self.data = datein((openfile_name[0]))
+            self.add_datax_table()
             print("load ok")
 
     def add_fig_kmeans(self, fig):
@@ -143,6 +173,8 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self_fig(fig)
         self.evaluate(KMedoids_model, y_pred)
 
+        self.add_datay_table(y_pred)
+
     def k_mean_draw(self, self_fig):
         # self.k_model_draw(KMedoids)
         class_num = 3 if self.ui.class_num_lineEdit.text() == "" else int(self.ui.class_num_lineEdit.text())
@@ -166,6 +198,8 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             Vor_Dia(x_varied, KMeans_model)
         self_fig(fig)
         self.evaluate(KMeans_model, y_pred)
+
+        self.add_datay_table(y_pred)
     # def k_model_draw(self, func, plotWidget,self_fig):
     #     class_num = 3 if self.ui.class_num_lineEdit.text() == "" else int(self.ui.class_num_lineEdit.text())
     #     max_iter_num = 300 if self.ui.lineEdit_max_iter.text() == "" else int(self.ui.class_num_lineEdit.text())
