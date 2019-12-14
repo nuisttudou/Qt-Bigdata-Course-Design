@@ -7,3 +7,6 @@ pip install --user --requirement requirements.txt
 python3 ./de2.py  
 deactivate
 #### Writed under Ubuntu18.04
+# 开发环境
+PyCharm
+Qtdesigner
