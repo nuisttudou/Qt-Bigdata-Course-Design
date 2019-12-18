@@ -5,14 +5,15 @@ from matplotlib.backends.backend_qt5agg import FigureCanvas
 from sklearn import metrics
 from de2 import Ui_MainWindow  # importing our generated file
 import sys
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from sklearn.cluster import KMeans, MiniBatchKMeans
 from sklearn.datasets import make_blobs
 import pandas as pd
 from sklearn_extra.cluster import KMedoids
 import random
 from Voronoi_Diagram_ import *
+from mpl_toolkits.mplot3d import Axes3D
 
 RANDOM_VAL = 3
 RANDOM_NUM = 1500
@@ -23,7 +24,7 @@ class datein():
         if pwd == "":
             return
         da = np.array(pd.read_csv(pwd))
-        self.x_varied, self.y_varied = da[:, 0:2], da[:, 2]
+        self.x_varied, self.y_varied = da[:, 0:da.shape[1] - 1], da[:, da.shape[1] - 1]
 
 
 class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -62,19 +63,25 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.ui.tableWidget.setColumnCount(l.shape[0] + 1)
             row = self.ui.tableWidget.rowCount()
             self.ui.tableWidget.insertRow(row)
-            item_id = QTableWidgetItem('%.3f' % (l[0]))  # str(l[0]))
-            item_name = QTableWidgetItem('%.3f' % (l[1]))  # str(l[1]))
-            item_pos = QTableWidgetItem('???')
-            self.ui.tableWidget.setItem(row, 0, item_id)
-            self.ui.tableWidget.setItem(row, 1, item_name)
-            self.ui.tableWidget.setItem(row, 2, item_pos)
+
+            # item_id = QTableWidgetItem('%.3f' % (l[0]))  # str(l[0]))
+            # item_name = QTableWidgetItem('%.3f' % (l[1]))  # str(l[1]))
+            # item_pos = QTableWidgetItem('???')
+            # self.ui.tableWidget.setItem(row, 0, item_id)
+            # self.ui.tableWidget.setItem(row, 1, item_name)
+            # self.ui.tableWidget.setItem(row, 2, item_pos)
+
+            for s in range(0, l.shape[0]):
+                self.ui.tableWidget.setItem(row, s, QTableWidgetItem('%.3f' % (l[s])))
+            self.ui.tableWidget.setItem(row, l.shape[0], QTableWidgetItem('???'))
 
         for xRow in self.data.x_varied:
             add_data_table_one_row(self, xRow)
 
     def add_datay_table(self, y_pred):
+        ind = self.data.x_varied.shape[1]
         for yIndex in range(0, y_pred.shape[0]):
-            self.ui.tableWidget.setItem(yIndex, 2, QTableWidgetItem(chr(y_pred[yIndex] + 65)))
+            self.ui.tableWidget.setItem(yIndex, ind, QTableWidgetItem(chr(y_pred[yIndex] + 65)))
         # for yIndex in range(0,y_pred.shape[0]):
         #     self.ui.tableWidget.setItem(yIndex, 2, QTableWidgetItem(str(y_pred[yIndex])))
         # for yIndex in range(0,self.data.y_varied.shape[0]):
@@ -84,7 +91,8 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.data = datein()
         centers_num = int(self.ui.horizontalSlider.value())
         cluster_std_ = [random.random() * RANDOM_VAL for _ in range(centers_num)]
-        self.data.x_varied, self.data.y_varied = make_blobs(n_samples=RANDOM_NUM, cluster_std=cluster_std_,  # cluster_std=2
+        self.data.x_varied, self.data.y_varied = make_blobs(n_samples=RANDOM_NUM, cluster_std=cluster_std_,
+                                                            # cluster_std=2
                                                             centers=centers_num)  # , cluster_std=[1.0, 2.5, 0.5])
 
         # self.add_data_table('x', 'y', 'z')
@@ -158,11 +166,18 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # self.k_model_draw(KMeans)
         class_num = 3 if self.ui.class_num_lineEdit.text() == "" else int(self.ui.class_num_lineEdit.text())
         max_iter_num = 300 if self.ui.lineEdit_max_iter.text() == "" else int(self.ui.lineEdit_max_iter.text())
-        fig, ax1 = plt.subplots(figsize=(8, 5))
 
-        init_string = 'random' if self.ui.radioButton_kmedoids_random.isChecked() else 'heuristic' if self.ui.radioButton_kmedoids_heuristic.isChecked() else 'k-medoids++'
         random_state = 170
         x_varied = self.data.x_varied
+
+        if x_varied.shape[1] == 2:
+            fig, ax1 = plt.subplots(figsize=(8, 5))
+        elif x_varied.shape[1] == 3:
+            fig = plt.figure()
+            ax1 = fig.add_subplot(111, projection='3d')
+
+        init_string = 'random' if self.ui.radioButton_kmedoids_random.isChecked() else 'heuristic' if self.ui.radioButton_kmedoids_heuristic.isChecked() else 'k-medoids++'
+
         # y_pred = KMedoids(n_clusters=class_num, random_state=random_state).fit_predict(x_varied)
 
         metric_string = self.ui.comboBox_kMedoids.currentText()
@@ -185,10 +200,15 @@ class MyWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         max_iter_num = 300 if self.ui.lineEdit_max_iter.text() == "" else int(self.ui.lineEdit_max_iter.text())
         n_init_num = 1 if self.ui.lineEdit_kmeans_runtimes.text() == "" else int(
             self.ui.lineEdit_kmeans_runtimes.text())
-        fig, ax1 = plt.subplots(figsize=(8, 5))
 
         random_state = 170
         x_varied = self.data.x_varied
+
+        if x_varied.shape[1] == 2:
+            fig, ax1 = plt.subplots(figsize=(8, 5))
+        elif x_varied.shape[1] == 3:
+            fig = plt.figure()
+            ax1 = fig.add_subplot(111, projection='3d')
 
         init_string = 'random' if self.ui.radioButton_kmeans_random.isChecked() else 'k-means++'  # else 'heuristic' if self.ui.radioButton_kmeans_heuristic else 'k-means++'
 
