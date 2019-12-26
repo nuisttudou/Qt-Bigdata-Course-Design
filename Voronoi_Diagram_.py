@@ -1,8 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def Vor_Dia(X_varied,model):
+
+def Vor_Dia(X_varied, model):
     centroids = model.cluster_centers_
+    # print(centroids)
     plt.scatter(centroids[:, 0], centroids[:, 1],
                 marker='x', s=40, linewidths=1,
                 color='b', zorder=10)
@@ -21,3 +23,4 @@ def Vor_Dia(X_varied,model):
                cmap=plt.cm.Paired,
                aspect='auto', origin='lower'
                )
+    return centroids

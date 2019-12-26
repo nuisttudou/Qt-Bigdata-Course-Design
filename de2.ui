@@ -39,7 +39,7 @@
           </size>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="tab1">
           <property name="enabled">
@@ -101,14 +101,14 @@
                    <item>
                     <widget class="QRadioButton" name="radioButton_kmeans_plusplus">
                      <property name="text">
-                      <string>heuristic</string>
+                      <string>启发式</string>
                      </property>
                     </widget>
                    </item>
                    <item>
                     <widget class="QRadioButton" name="radioButton_kmeans_random">
                      <property name="text">
-                      <string>random</string>
+                      <string>随机</string>
                      </property>
                      <property name="checked">
                       <bool>true</bool>
@@ -128,7 +128,7 @@
                 <item row="1" column="4" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
                  <widget class="QPushButton" name="runButton_kMeans">
                   <property name="text">
-                   <string>run</string>
+                   <string>运行</string>
                   </property>
                  </widget>
                 </item>
@@ -137,11 +137,17 @@
                   <widget class="QLabel" name="label_5">
                    <property name="geometry">
                     <rect>
-                     <x>10</x>
-                     <y>0</y>
-                     <width>55</width>
+                     <x>40</x>
+                     <y>10</y>
+                     <width>100</width>
                      <height>17</height>
                     </rect>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>100</width>
+                     <height>0</height>
+                    </size>
                    </property>
                    <property name="text">
                     <string>运行次数</string>
@@ -150,7 +156,7 @@
                   <widget class="QLineEdit" name="lineEdit_kmeans_runtimes">
                    <property name="geometry">
                     <rect>
-                     <x>100</x>
+                     <x>170</x>
                      <y>0</y>
                      <width>113</width>
                      <height>25</height>
@@ -230,14 +236,14 @@
                   <item>
                    <widget class="QRadioButton" name="radioButton_kmedoids_heuristic">
                     <property name="text">
-                     <string>heuristic</string>
+                     <string>启发式</string>
                     </property>
                    </widget>
                   </item>
                   <item>
                    <widget class="QRadioButton" name="radioButton_kmedoids_random">
                     <property name="text">
-                     <string>random</string>
+                     <string>随机</string>
                     </property>
                     <property name="checked">
                      <bool>true</bool>
@@ -257,7 +263,7 @@
                <item row="0" column="4" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
                 <widget class="QPushButton" name="runButton_KMedoids">
                  <property name="text">
-                  <string>run</string>
+                  <string>运行</string>
                  </property>
                 </widget>
                </item>
@@ -445,7 +451,7 @@
          <item row="2" column="4" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QPushButton" name="exitButton">
            <property name="text">
-            <string>exit</string>
+            <string>退出</string>
            </property>
            <property name="autoDefault">
             <bool>false</bool>
@@ -453,7 +459,11 @@
           </widget>
          </item>
          <item row="2" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-          <widget class="QLineEdit" name="class_num_lineEdit"/>
+          <widget class="QLineEdit" name="class_num_lineEdit">
+           <property name="cursor">
+            <cursorShape>ArrowCursor</cursorShape>
+           </property>
+          </widget>
          </item>
          <item row="0" column="0">
           <layout class="QGridLayout" name="gridLayout"/>
@@ -591,7 +601,6 @@
     <addaction name="separator"/>
     <addaction name="k_mean_action"/>
     <addaction name="k_medoids_action"/>
-    <addaction name="actionMiniBatchKMeans"/>
     <addaction name="separator"/>
     <addaction name="actionrandom"/>
     <addaction name="separator"/>
@@ -625,7 +634,7 @@
   </action>
   <action name="exit_action">
    <property name="text">
-    <string>exit</string>
+    <string>退出</string>
    </property>
   </action>
   <action name="actiontemp">
@@ -635,12 +644,12 @@
   </action>
   <action name="k_medoids_action">
    <property name="text">
-    <string>K-中心点聚类</string>
+    <string>K-Medoids</string>
    </property>
   </action>
   <action name="actionrandom">
    <property name="text">
-    <string>random</string>
+    <string>载入默认数据集</string>
    </property>
   </action>
   <action name="actionMiniBatchKMeans">
