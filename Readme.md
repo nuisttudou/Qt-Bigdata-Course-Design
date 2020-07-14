@@ -1,4 +1,4 @@
-## 生成requirements.txt
+## make requirements.txt
 pip freeze > requirements.txt
 # how to use this project
 git clone https://github.com/nuisttudou/Qt-Demo.git
@@ -10,7 +10,7 @@ python3 ./de2.py
 
 deactivate
 #### Writed under Ubuntu18.04
-# 开发环境
+# develope environment
 PyCharm
 Qtdesigner
 
